@@ -60,4 +60,16 @@ public class OrderController {
         }
         return new ResultData<>(ResultCode.SUCCESS, entity);
     }
+
+    /**
+     * @return
+     */
+    @GetMapping("/list")
+    @ApiOperation(value = "/list", notes = "list")
+    public ResultData<?> list() {
+        log.info("info->list");
+        return new ResultData<>(ResultCode.SUCCESS, orderService.list());
+    }
+
+
 }

@@ -1,48 +1,38 @@
-# Spring
 spring:
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    timeout: 200000
-    database: 3
-    pool:
-      max-active: 8
-      min-idle: 0
-      max-idle: 8
-      max-wait: -1
-    password:
-  # 配置数据源
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.108.175.249:53306/oath_db_test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
-    username: gmh_test1
-    password: FW3Yc6si3kae3eCs
-    # 使用druid数据源
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      initial-size: 5 #连接池初始化大小
-      min-idle: 10 #最小空闲连接数
-      max-active: 20 #最大连接数
-      max-wait: 60000
-      pool-prepared-statements: true
-      max-pool-prepared-statement-per-connection-size: 20
-      time-between-eviction-runs-millis: 60000
-      min-evictable-idle-time-millis: 300000
-      #validation-query: SELECT 1 FROM DUAL
-      test-while-idle: true
-      test-on-borrow: false
-      test-on-return: false
-      web-stat-filter:
-        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
-      stat-view-servlet: #访问监控网页的登录用户名和密码
-        login-username: druid
-        login-password: druid
-      #
-      filter:
-        stat:
-          log-slow-sql: true
-          slow-sql-millis: 1000
-          merge-sql: false
-        wall:
-          config:
-            multi-statement-allow: true
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  shardingsphere:
+    datasource:
+      names: ds-master,ds-slave1,ds-slave2
+      # 配置主库
+      ds-master:
+        jdbc-url: jdbc:mysql://47.108.175.249:53306/gmh_test1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        username: gmh_test1
+        password: FW3Yc6si3kae3eCs
+        #最大连接数
+        maxPoolSize: 20
+      ds-slave1: # 配置第一个从库
+        jdbc-url: jdbc:mysql://47.108.175.249:53306/gmh_test1?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        username: gmh_test1
+        password: FW3Yc6si3kae3eCs
+        maxPoolSize: 20
+      ds-slave2: # 配置第二个从库
+        jdbc-url: jdbc:mysql://47.108.175.249:53306/gmh_test2?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        username: gmh_test2
+        password: 3p8HEmJ635snw2ZH
+        maxPoolSize: 20
+
+    masterslave:
+      load-balance-algorithm-type: round_robin #从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若`loadBalanceAlgorithmClassName`存在则忽略该配置
+      name: ms
+      master-data-source-name: ds-master #主库数据源名称
+      slave-data-source-names: ds-slave1,ds-slave2 #从库数据源名称列表
+    props:
+      sql.show: true # 开启SQL显示，默认值: false，注意：仅配置读写分离时不会打印日志！！！
+      executor.size: 2 #工作线程数量，默认值: CPU核数

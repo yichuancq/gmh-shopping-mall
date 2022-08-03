@@ -1,12 +1,10 @@
-#server:
-#  port: 8088
-#  tomcat:
-#    uri-encoding: utf-8
-#  servlet:
-#    context-path: /demo
-###### shardingJDBC ##########
 spring:
   shardingsphere:
+    # 参数配置，显示sql
+    props:
+      sql:
+        show: true
+
     datasource:
       names: ds
       ds:
@@ -18,12 +16,12 @@ spring:
     sharding:
       tables:
         t_order:
-          actual-data-nodes: ds.t_order_$->{2020..2021}_$->{1..12}
+          actual-data-nodes: ds.gmh_order_$->{2020..2022}_$->{1..12}
           table-strategy:
             standard:
               sharding-column: create_time
-              precise-algorithm-class-name: com.gmh.mail.common.shardingjdbc.DatePreciseShardingAlgorithm
-              range-algorithm-class-name: com.gmh.mail.common.shardingjdbc.DateRangeShardingAlgorithm
+              precise-algorithm-class-name:  com.gmh.order.shardingjdbc.DatePreciseShardingAlgorithm
+              range-algorithm-class-name:  com.gmh.order.shardingjdbc.DateRangeShardingAlgorithm
       #        t_order_item:
       #          actual-data-nodes: ds.t_order_item_$->{2020..2021}_$->{1..12}
       #          table-strategy:
@@ -32,11 +30,8 @@ spring:
       #              precise-algorithm-class-name: io.ian.demo.core.shardingjdbc.DatePreciseShardingAlgorithm
       #              range-algorithm-class-name: io.ian.demo.core.shardingjdbc.DateRangeShardingAlgorithm
       binding-tables:
-        - t_order
+        - gmh_order
       defaultDataSourceName: ds
-    props:
-      sql:
-        show: true
 
 
 
