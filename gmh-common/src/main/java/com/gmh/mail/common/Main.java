@@ -1,4 +1,4 @@
-package com.gmh.order;
+package com.gmh.mail.common;
 
 public class Main {
     public static void main(String[] args) {

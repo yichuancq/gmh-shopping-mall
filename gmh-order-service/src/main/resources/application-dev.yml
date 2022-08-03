@@ -1,0 +1,42 @@
+#server:
+#  port: 8088
+#  tomcat:
+#    uri-encoding: utf-8
+#  servlet:
+#    context-path: /demo
+###### shardingJDBC ##########
+spring:
+  shardingsphere:
+    datasource:
+      names: ds
+      ds:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://47.108.175.249:53306/gmh_test1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&tinyInt1isBit=false
+        username: gmh_test1
+        password: FW3Yc6si3kae3eCs
+    sharding:
+      tables:
+        t_order:
+          actual-data-nodes: ds.t_order_$->{2020..2021}_$->{1..12}
+          table-strategy:
+            standard:
+              sharding-column: create_time
+              precise-algorithm-class-name: com.gmh.mail.common.shardingjdbc.DatePreciseShardingAlgorithm
+              range-algorithm-class-name: com.gmh.mail.common.shardingjdbc.DateRangeShardingAlgorithm
+      #        t_order_item:
+      #          actual-data-nodes: ds.t_order_item_$->{2020..2021}_$->{1..12}
+      #          table-strategy:
+      #            standard:
+      #              sharding-column: order_create_time
+      #              precise-algorithm-class-name: io.ian.demo.core.shardingjdbc.DatePreciseShardingAlgorithm
+      #              range-algorithm-class-name: io.ian.demo.core.shardingjdbc.DateRangeShardingAlgorithm
+      binding-tables:
+        - t_order
+      defaultDataSourceName: ds
+    props:
+      sql:
+        show: true
+
+
+

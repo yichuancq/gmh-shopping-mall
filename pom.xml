@@ -7,5 +7,22 @@
     <groupId>com.gmh.mail</groupId>
     <artifactId>gmh-shoping-mall</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <!-- Spring Boot 启动父依赖 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.6</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <encoding>UTF-8</encoding>
+    </properties>
+    <modules>
+        <module>gmh-common</module>
+        <module>gmh-order-service</module>
+    </modules>
     <packaging>pom</packaging>
 </project>
