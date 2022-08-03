@@ -1,4 +1,5 @@
 package com.gmh.order.controller;
+
 import com.gmh.mail.common.exception.ResultCode;
 import com.gmh.mail.common.response.ResultData;
 import com.gmh.order.vo.RequestParams;
@@ -10,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @author yichuan
  */
-@RestController
 @RequestMapping(value = "/order")
 @Slf4j
-@Api(tags = "订单管理")
+@RestController
+@Api(tags = "订单管理", value = "order")
 public class OrderController {
 
     /**
