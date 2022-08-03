@@ -2,10 +2,13 @@ package com.gmh.order.controller;
 
 import com.gmh.mail.common.exception.ResultCode;
 import com.gmh.mail.common.response.ResultData;
+import com.gmh.order.domain.OrderEntity;
+import com.gmh.order.service.OrderService;
 import com.gmh.order.vo.RequestParams;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Api(tags = "订单管理", value = "order")
 public class OrderController {
+    @Autowired
+    private OrderService orderService;
 
     /**
      * info
@@ -38,5 +43,21 @@ public class OrderController {
     public ResultData<?> test() {
         log.info("info->test:{}");
         return new ResultData<>(ResultCode.SUCCESS, "hello");
+    }
+
+    /**
+     * findById
+     *
+     * @return
+     */
+    @GetMapping(value = "/findById")
+    @ApiOperation(value = "/findById", notes = "findById")
+    public ResultData<?> findById(Integer id) {
+        log.info("info->findById:{}", id);
+        OrderEntity entity = orderService.getBaseMapper().selectById(1);
+        if (entity != null) {
+            log.info("entity:{}", entity);
+        }
+        return new ResultData<>(ResultCode.SUCCESS, entity);
     }
 }
