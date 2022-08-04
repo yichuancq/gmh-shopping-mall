@@ -52,6 +52,22 @@ public class OrderController {
     }
 
     /**
+     * deleteById
+     *
+     * @return
+     */
+    @GetMapping(value = "/deleteById")
+    @ApiOperation(value = "/deleteById", notes = "deleteById")
+    public ResultData<?> deleteById(@RequestParam("id") BigInteger id) {
+        try {
+            return new ResultData<>(ResultCode.SUCCESS, orderService.deleteById(id));
+        } catch (Exception exception) {
+            return new ResultData<>(ResultCode.FAIL, exception.getMessage());
+        }
+    }
+
+
+    /**
      * @return
      */
     @GetMapping("/list")

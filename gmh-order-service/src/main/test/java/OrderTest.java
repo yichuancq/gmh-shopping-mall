@@ -48,6 +48,15 @@ public class OrderTest {
         }
     }
 
+    @Test
+    public void deleteById() {
+        final BigInteger id = BigInteger.valueOf(Long.parseLong("1555025306950111233"));
+        log.info("id:{}", id);
+        boolean flag = orderService.removeById(id);
+        log.info("flag:{}", flag);
+    }
+
+
     /**
      *
      */

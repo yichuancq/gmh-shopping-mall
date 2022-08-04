@@ -17,5 +17,17 @@ public interface OrderService extends IService<OrderEntity> {
      */
     boolean saveOrder() throws Exception;
 
+    /**
+     * @param id
+     * @return
+     * @throws Exception
+     */
     List<OrderEntity> findById(BigInteger id) throws Exception;
+
+    /**
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    Object deleteById(BigInteger id) throws Exception;
 }

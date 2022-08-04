@@ -7,6 +7,7 @@ import com.gmh.order.domain.OrderEntity;
 import com.gmh.order.mapper.OrderMapper;
 import com.gmh.order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -22,6 +23,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
 
 
     /**
+     * saveOrder
+     *
      * @return
      * @throws Exception
      */
@@ -37,6 +40,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
         return flag;
     }
 
+    /**
+     * findById
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<OrderEntity> findById(BigInteger id) throws Exception {
         log.info("info->findById:{}", id);
@@ -47,5 +57,20 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
             log.info("list size:{}", entityList.size());
         }
         return entityList;
+    }
+
+    /**
+     * deleteById
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object deleteById(BigInteger id) throws Exception {
+        if (id == null || StringUtils.isEmpty(id.toString())) {
+            throw new Exception("Id 为空");
+        }
+        return this.getBaseMapper().deleteById(id);
     }
 }
