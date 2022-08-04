@@ -1,4 +1,4 @@
-package com.gmh.order.shardingjdbc;
+package com.gmh.order.config.shardingjdbc;
 
 import com.gmh.mail.common.utils.DateUtils;
 import org.apache.commons.lang3.StringUtils;

@@ -1,4 +1,4 @@
-package com.gmh.order.shardingjdbc;
+package com.gmh.order.config.shardingjdbc;
 
 import com.google.common.collect.Range;
 import lombok.extern.slf4j.Slf4j;
