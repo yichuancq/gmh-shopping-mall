@@ -3,6 +3,7 @@ package com.gmh.order.controller;
 import com.gmh.mail.common.exception.ResultCode;
 import com.gmh.mail.common.response.ResultData;
 import com.gmh.order.service.OrderService;
+import com.gmh.order.vo.QueryOrderVo;
 import com.gmh.order.vo.RequestParams;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -50,6 +51,7 @@ public class OrderController {
             return new ResultData<>(ResultCode.FAIL, exception.getMessage());
         }
     }
+
     /**
      * deleteById
      *
@@ -78,6 +80,7 @@ public class OrderController {
             return new ResultData<>(ResultCode.FAIL, exception.getMessage());
         }
     }
+
     /**
      * @return
      */
@@ -90,5 +93,24 @@ public class OrderController {
         } catch (Exception exception) {
             return new ResultData<>(ResultCode.FAIL, exception.getMessage());
         }
+    }
+
+    /**
+     * 订单分页查询
+     *
+     * @return
+     */
+    @PostMapping("/pagerOrderList")
+    @ApiOperation(value = "/pagerOrderList", notes = "订单分页查询")
+    public ResultData<?> pagerOrderList(@RequestBody QueryOrderVo queryOrderVo) {
+        log.info("pagerOrderList->");
+        try {
+            return orderService.pagerOrderList(queryOrderVo);
+        } catch (Exception exception) {
+            log.error(exception.getMessage());
+            exception.printStackTrace();
+            return new ResultData<>(ResultCode.FAIL, exception.getMessage());
+        }
+
     }
 }
