@@ -1,3 +1,4 @@
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gmh.order.OrderServerApplication;
 import com.gmh.order.domain.OrderEntity;
 import com.gmh.order.service.OrderService;
@@ -7,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -20,9 +23,13 @@ public class OrderTest {
      */
     @Test
     public void findOneById() {
-        OrderEntity entity = orderService.getBaseMapper().selectById(1);
-        if (entity != null) {
-            log.info("entity:{}", entity);
+        final Integer id = 1;
+        log.info("info->findById:{}", id);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("id", id);
+        List<OrderEntity> entityList = orderService.getBaseMapper().selectList(queryWrapper);
+        if (entityList != null) {
+            log.info("list size:{}", entityList.size());
         }
     }
 
