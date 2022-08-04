@@ -1,4 +1,5 @@
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.gmh.order.OrderServerApplication;
 import com.gmh.order.domain.OrderEntity;
 import com.gmh.order.service.OrderService;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,7 +56,7 @@ public class OrderTest {
         List<OrderEntity> orderEntityList = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
             OrderEntity orderEntity = new OrderEntity();
-            orderEntity.setId(i + 20);
+            orderEntity.setId(BigInteger.valueOf(Long.parseLong(IdWorker.getIdStr())));
             orderEntity.setOrderNumber(i);
             orderEntity.setCreateTime(new Date());
             orderEntity.setUpdateTime(new Date());
@@ -69,7 +71,7 @@ public class OrderTest {
     @Test
     public void saveOne() {
         OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setId(11);
+        orderEntity.setId(BigInteger.valueOf(Long.parseLong(IdWorker.getIdStr())));
         orderEntity.setOrderNumber(2);
         orderEntity.setCreateTime(new Date());
         orderEntity.setUpdateTime(new Date());
