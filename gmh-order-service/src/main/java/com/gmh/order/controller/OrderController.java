@@ -103,7 +103,7 @@ public class OrderController {
     @PostMapping("/pagerOrderList")
     @ApiOperation(value = "/pagerOrderList", notes = "订单分页查询")
     public ResultData<?> pagerOrderList(@RequestBody QueryOrderVo queryOrderVo) {
-        log.info("pagerOrderList->");
+        log.info("pagerOrderList->queryOrderVo:{}", queryOrderVo);
         try {
             return orderService.pagerOrderList(queryOrderVo);
         } catch (Exception exception) {
@@ -111,6 +111,5 @@ public class OrderController {
             exception.printStackTrace();
             return new ResultData<>(ResultCode.FAIL, exception.getMessage());
         }
-
     }
 }
