@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.gmh.mail.common</groupId>
+    <groupId>com.gmh.mail</groupId>
     <artifactId>gmh-common</artifactId>
     <packaging>jar</packaging>
 
