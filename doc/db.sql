@@ -27,7 +27,7 @@ CREATE TABLE `gmh_order_2022_8` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AVG_ROW_LENGTH=32 COMMENT='订单宽表'
 --
-CREATE TABLE `gmh_product_2022_1` (
+CREATE TABLE `gmh_product_2022_10` (
   `id` bigint NOT NULL COMMENT 'id',
   `product_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名称',
   `cate_id` bigint DEFAULT NULL COMMENT '该商品的分类(gmh_commodity_category表)id',
