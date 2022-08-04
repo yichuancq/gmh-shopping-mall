@@ -9,7 +9,7 @@ spring:
       ds:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://47.108.175.249:53306/gmh_test1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&tinyInt1isBit=false
+        jdbc-url: jdbc:mysql://47.108.175.249:53306/gmh_test1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&tinyInt1isBit=false&rewriteBatchedStatements=true
         username: gmh_test1
         password: FW3Yc6si3kae3eCs
     #sharding

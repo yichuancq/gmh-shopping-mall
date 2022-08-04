@@ -22,6 +22,7 @@ import java.math.BigInteger;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
     /**
      * info
      *
@@ -74,8 +75,13 @@ public class OrderController {
     @ApiOperation(value = "/list", notes = "list")
     public ResultData<?> list() {
         log.info("info->list");
-        return new ResultData<>(ResultCode.SUCCESS, orderService.list());
+        try {
+            return new ResultData<>(ResultCode.SUCCESS, orderService.list());
+        } catch (Exception exception) {
+            return new ResultData<>(ResultCode.FAIL, exception.getMessage());
+        }
     }
+
     /**
      * @return
      */
@@ -89,6 +95,4 @@ public class OrderController {
             return new ResultData<>(ResultCode.FAIL, exception.getMessage());
         }
     }
-
-
 }
