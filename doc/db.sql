@@ -1,5 +1,5 @@
-CREATE TABLE `gmh_order_1` (
-  `id` int NOT NULL COMMENT '订单Id',
+CREATE TABLE `gmh_order_2022_8` (
+  `id` bigint NOT NULL COMMENT '订单Id',
   `order_number` int NOT NULL COMMENT '订单编号',
   `order_code` varchar(255) DEFAULT NULL COMMENT '自提码or券码编号',
   `user_id` int DEFAULT NULL COMMENT '用户Id',
@@ -25,4 +25,4 @@ CREATE TABLE `gmh_order_1` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='订单宽表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AVG_ROW_LENGTH=32 COMMENT='订单宽表'

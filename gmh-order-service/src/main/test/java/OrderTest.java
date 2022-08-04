@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -17,6 +20,16 @@ import java.util.List;
 public class OrderTest {
     @Autowired
     private OrderService orderService;
+
+    /**
+     *
+     */
+    @Test
+    public void testInt() {
+        //long id=1555000553766346753;
+        BigDecimal id = BigDecimal.valueOf(Long.valueOf("1555000553766346753"));
+        System.out.println(id);
+    }
 
     /**
      *
@@ -33,4 +46,33 @@ public class OrderTest {
         }
     }
 
+    /**
+     *
+     */
+    @Test
+    public void saveBatch() {
+        List<OrderEntity> orderEntityList = new ArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            OrderEntity orderEntity = new OrderEntity();
+            orderEntity.setId(i + 20);
+            orderEntity.setOrderNumber(i);
+            orderEntity.setCreateTime(new Date());
+            orderEntity.setUpdateTime(new Date());
+            orderEntityList.add(orderEntity);
+        }
+        orderService.saveBatch(orderEntityList, 100);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void saveOne() {
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setId(11);
+        orderEntity.setOrderNumber(2);
+        orderEntity.setCreateTime(new Date());
+        orderEntity.setUpdateTime(new Date());
+        orderService.save(orderEntity);
+    }
 }

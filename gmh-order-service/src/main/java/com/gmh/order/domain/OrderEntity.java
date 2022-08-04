@@ -1,5 +1,6 @@
 package com.gmh.order.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -8,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigInteger;
 
 /**
  * @author yichuan
@@ -23,8 +26,8 @@ public class OrderEntity extends BaseEntity {
     /**
      *
      */
-    @TableId(value = "id")
-    private Integer id;
+    @TableId(value = "id", type = IdType.INPUT)
+    private BigInteger id;
 
     /**
      *

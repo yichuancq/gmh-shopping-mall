@@ -17,7 +17,7 @@ spring:
       tables:
         gmh_order:
           # actual-data-nodes: ds.gmh_order_$->{2020..2022}_$->{1..12}
-          actual-data-nodes: ds.gmh_order_$->{2021..2021}_$->{01..07}
+          actual-data-nodes: ds.gmh_order_$->{2022..2022}_$->{01..12}
           table-strategy:
             standard:
               sharding-column: create_time

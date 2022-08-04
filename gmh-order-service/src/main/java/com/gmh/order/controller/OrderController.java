@@ -76,5 +76,19 @@ public class OrderController {
         return new ResultData<>(ResultCode.SUCCESS, orderService.list());
     }
 
+    /**
+     * @return
+     */
+    @PostMapping("/save")
+    @ApiOperation(value = "/save", notes = "save")
+    public ResultData<?> save() {
+        log.info("info->save");
+        try {
+            return new ResultData<>(ResultCode.SUCCESS, orderService.saveOrder());
+        } catch (Exception exception) {
+            return new ResultData<>(ResultCode.FAIL, exception.getMessage());
+        }
+    }
+
 
 }

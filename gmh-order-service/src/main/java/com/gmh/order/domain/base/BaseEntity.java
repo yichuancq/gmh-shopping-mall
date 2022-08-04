@@ -25,7 +25,7 @@ public class BaseEntity implements Serializable {
     /**
      * 修改时间
      */
-    @TableField(value = "update_time")
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private Date updateTime;
 
 }
