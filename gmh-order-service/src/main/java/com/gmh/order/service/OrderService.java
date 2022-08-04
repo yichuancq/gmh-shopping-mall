@@ -29,5 +29,5 @@ public interface OrderService extends IService<OrderEntity> {
      * @return
      * @throws Exception
      */
-    Object deleteById(BigInteger id) throws Exception;
+    boolean deleteById(BigInteger id) throws Exception;
 }

@@ -1,5 +1,6 @@
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.gmh.mail.common.utils.DateUtils;
 import com.gmh.order.OrderServerApplication;
 import com.gmh.order.domain.OrderEntity;
 import com.gmh.order.service.OrderService;
@@ -56,22 +57,25 @@ public class OrderTest {
         log.info("flag:{}", flag);
     }
 
-
     /**
      *
      */
     @Test
     public void saveBatch() {
         List<OrderEntity> orderEntityList = new ArrayList<>();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 20; i++) {
+            String date = "2022-05-01 10:58:19";
             OrderEntity orderEntity = new OrderEntity();
             orderEntity.setId(BigInteger.valueOf(Long.parseLong(IdWorker.getIdStr())));
             orderEntity.setOrderNumber(i);
-            orderEntity.setCreateTime(new Date());
-            orderEntity.setUpdateTime(new Date());
+            Date crateTime = DateUtils.parseTime(date);
+            Date updateTime = DateUtils.parseTime(date);
+            orderEntity.setCreateTime(crateTime);
+//        orderEntity.setCreateTime(new Date());
+            orderEntity.setUpdateTime(updateTime);
             orderEntityList.add(orderEntity);
         }
-        orderService.saveBatch(orderEntityList, 100);
+        orderService.saveBatch(orderEntityList, 50);
     }
 
     /**
@@ -80,10 +84,14 @@ public class OrderTest {
     @Test
     public void saveOne() {
         OrderEntity orderEntity = new OrderEntity();
+        String date = "2022-07-04 10:58:19";
         orderEntity.setId(BigInteger.valueOf(Long.parseLong(IdWorker.getIdStr())));
         orderEntity.setOrderNumber(2);
-        orderEntity.setCreateTime(new Date());
-        orderEntity.setUpdateTime(new Date());
+        Date crateTime = DateUtils.parseTime(date);
+        Date updateTime = DateUtils.parseTime(date);
+        orderEntity.setCreateTime(crateTime);
+//        orderEntity.setCreateTime(new Date());
+        orderEntity.setUpdateTime(updateTime);
         orderService.save(orderEntity);
     }
 }

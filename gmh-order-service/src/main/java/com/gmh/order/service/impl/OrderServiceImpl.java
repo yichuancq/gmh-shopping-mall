@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setId(BigInteger.valueOf(Long.parseLong(IdWorker.getIdStr())));
         orderEntity.setOrderNumber(2);
+        orderEntity.setFreight(BigDecimal.valueOf(88.88));
+        orderEntity.setUserNickName("用户昵称");
         orderEntity.setCreateTime(new Date());
         orderEntity.setUpdateTime(new Date());
         boolean flag = this.save(orderEntity);
@@ -67,10 +70,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
      * @throws Exception
      */
     @Override
-    public Object deleteById(BigInteger id) throws Exception {
+    public boolean deleteById(BigInteger id) throws Exception {
         if (id == null || StringUtils.isEmpty(id.toString())) {
             throw new Exception("Id 为空");
         }
-        return this.getBaseMapper().deleteById(id);
+        int n = this.getBaseMapper().deleteById(id);
+        if (n > 0) {
+            return true;
+        }
+        return false;
     }
 }

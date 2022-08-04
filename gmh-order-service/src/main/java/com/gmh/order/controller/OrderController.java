@@ -48,10 +48,8 @@ public class OrderController {
             return new ResultData<>(ResultCode.SUCCESS, orderService.findById(id));
         } catch (Exception exception) {
             return new ResultData<>(ResultCode.FAIL, exception.getMessage());
-
         }
     }
-
     /**
      * deleteById
      *
@@ -67,7 +65,6 @@ public class OrderController {
         }
     }
 
-
     /**
      * @return
      */
@@ -81,7 +78,6 @@ public class OrderController {
             return new ResultData<>(ResultCode.FAIL, exception.getMessage());
         }
     }
-
     /**
      * @return
      */

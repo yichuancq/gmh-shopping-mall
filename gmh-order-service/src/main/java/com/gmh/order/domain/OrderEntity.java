@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
@@ -28,11 +29,19 @@ public class OrderEntity extends BaseEntity {
      */
     @TableId(value = "id", type = IdType.INPUT)
     private BigInteger id;
-
     /**
-     *
+     * 订单编号
      */
     @TableField(value = "order_number")
     private Integer orderNumber;
-
+    /**
+     * 用户昵称
+     */
+    @TableField(value = "user_nickname")
+    private String userNickName;
+    /**
+     * 运费费用
+     */
+    @TableField(value = "freight")
+    private BigDecimal freight;
 }
