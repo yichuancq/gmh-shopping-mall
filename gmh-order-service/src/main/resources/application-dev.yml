@@ -1,10 +1,9 @@
 spring:
   shardingsphere:
-    # 参数配置，显示sql
+    #参数配置，显示sql
     props:
       sql:
         show: true
-
     datasource:
       names: ds
       ds:
@@ -13,15 +12,17 @@ spring:
         jdbc-url: jdbc:mysql://47.108.175.249:53306/gmh_test1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&tinyInt1isBit=false
         username: gmh_test1
         password: FW3Yc6si3kae3eCs
+    #sharding
     sharding:
       tables:
-        t_order:
-          actual-data-nodes: ds.gmh_order_$->{2020..2022}_$->{1..12}
+        gmh_order:
+          # actual-data-nodes: ds.gmh_order_$->{2020..2022}_$->{1..12}
+          actual-data-nodes: ds.gmh_order_$->{2021..2021}_$->{01..3}
           table-strategy:
             standard:
               sharding-column: create_time
-              precise-algorithm-class-name:  com.gmh.order.shardingjdbc.DatePreciseShardingAlgorithm
-              range-algorithm-class-name:  com.gmh.order.shardingjdbc.DateRangeShardingAlgorithm
+              precise-algorithm-class-name: com.gmh.order.shardingjdbc.DatePreciseShardingAlgorithm
+              range-algorithm-class-name: com.gmh.order.shardingjdbc.DateRangeShardingAlgorithm
       #        t_order_item:
       #          actual-data-nodes: ds.t_order_item_$->{2020..2021}_$->{1..12}
       #          table-strategy:

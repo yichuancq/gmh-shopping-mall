@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
  *
  * @author yichuan
  */
+//@Mapper
 @Mapper
 public interface OrderMapper extends BaseMapper<OrderEntity> {
 }

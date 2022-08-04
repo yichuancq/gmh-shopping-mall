@@ -13,11 +13,18 @@ import java.util.Date;
 @Slf4j
 public class DatePreciseShardingAlgorithm implements PreciseShardingAlgorithm<Date> {
 
+    /**
+     * @param availableTargetNames
+     * @param preciseShardingValue
+     * @return
+     */
     @Override
     public String doSharding(Collection<String> availableTargetNames, PreciseShardingValue<Date> preciseShardingValue) {
         Date date = preciseShardingValue.getValue();
         String suffix = ShardingUtils.getSuffixByYearMonth(date);
+        log.info("suffix: {}", suffix);
         for (String tableName : availableTargetNames) {
+            log.info("tableName: {}", tableName);
             if (tableName.endsWith(suffix)) {
                 return tableName;
             }

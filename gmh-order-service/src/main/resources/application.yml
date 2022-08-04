@@ -48,6 +48,11 @@ mybatis-plus:
       db-type: MYSQL
   configuration:
     # 懒加载
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+    #
     aggressive-lazy-loading: true
     # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
     #map-underscore-to-camel-case: true

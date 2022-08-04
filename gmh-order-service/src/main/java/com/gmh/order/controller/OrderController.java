@@ -1,5 +1,6 @@
 package com.gmh.order.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gmh.mail.common.exception.ResultCode;
 import com.gmh.mail.common.response.ResultData;
 import com.gmh.order.domain.OrderEntity;
@@ -10,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author yichuan
@@ -52,13 +55,15 @@ public class OrderController {
      */
     @GetMapping(value = "/findById")
     @ApiOperation(value = "/findById", notes = "findById")
-    public ResultData<?> findById(Integer id) {
+    public ResultData<?> findById(@RequestParam("id") Integer id) {
         log.info("info->findById:{}", id);
-        OrderEntity entity = orderService.getBaseMapper().selectById(1);
-        if (entity != null) {
-            log.info("entity:{}", entity);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("id", id);
+        List<OrderEntity> entityList = orderService.getBaseMapper().selectList(queryWrapper);
+        if (entityList != null) {
+            log.info("list size:{}", entityList.size());
         }
-        return new ResultData<>(ResultCode.SUCCESS, entity);
+        return new ResultData<>(ResultCode.SUCCESS, entityList);
     }
 
     /**

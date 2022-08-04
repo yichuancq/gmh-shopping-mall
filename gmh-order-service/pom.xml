@@ -17,7 +17,6 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <sharding-jdbc-spring-boot-starter.version>4.1.1</sharding-jdbc-spring-boot-starter.version>
     </properties>
     <dependencies>
         <dependency>
@@ -124,10 +123,8 @@
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-            <version>${sharding-jdbc-spring-boot-starter.version}</version>
+            <version>4.1.1</version>
         </dependency>
-
-
     </dependencies>
     <build>
         <defaultGoal>compile</defaultGoal>
